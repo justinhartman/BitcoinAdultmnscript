@@ -48,7 +48,7 @@ then
   sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
   cd
 
-  https://github.com/BitcoinAdultNg/BitcoinAdult/releases/download/V1.2.0/BitcoinAdult_V1.2.0_Linux_X64.zip
+  https://github.com/BitcoinAdultNg/BitcoinAdult/archive/master.zip
   unzip -d Linux Linux.zip 
   chmod +x Linux/*
   sudo mv  Linux/* /usr/local/bin
