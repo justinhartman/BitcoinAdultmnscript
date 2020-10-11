@@ -61,14 +61,14 @@ then
   echo "y" | sudo ufw enable
   sudo ufw status
 
-  mkdir -p ~/root
-  echo 'export PATH=~/root:$PATH' > ~/.bash_aliases
+  mkdir -p ~/bin
+  echo 'export PATH=~/bin:$PATH' > ~/.bash_aliases
   source ~/.bashrc
 fi
 
  ## Setup conf
  IP=$(curl -k https://ident.me)
- mkdir -p ~/root
+ mkdir -p ~/bin
  echo ""
  echo "Configure your masternodes now!"
  echo "Detecting IP address:$IP"
@@ -95,13 +95,13 @@ fi
   CONF_DIR=~/.BitcoinAdult_$ALIAS
 
   # Create scripts
-  echo '#!/root/bash' > ~/root/BitcoinAdultd_$ALIAS.sh
+  echo '#!/bin/bash' > ~/root/BitcoinAdultd_$ALIAS.sh
   echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/BitcoinAdultd_$ALIAS.sh
-  echo '#!/root/bash' > ~/root/BitcoinAdult-cli_$ALIAS.sh
+  echo '#!/bin/bash' > ~/root/BitcoinAdult-cli_$ALIAS.sh
   echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/BitcoinAdult-cli_$ALIAS.sh
-  echo '#!/root/bash' > ~/root/BitcoinAdult-tx_$ALIAS.sh
+  echo '#!/bin/bash' > ~/root/BitcoinAdult-tx_$ALIAS.sh
   echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/BitcoinAdult-tx_$ALIAS.sh
-  chmod +x ~/root/BitcoinAdult*.sh
+  chmod 755 ~/root/BitcoinAdult*.sh
 
   mkdir -p $CONF_DIR
   echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
