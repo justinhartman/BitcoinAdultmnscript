@@ -80,7 +80,7 @@ fi
   echo ""
   echo "Enter port for node $ALIAS"
   echo "Just press enter"
-  DEFAULTPORT=22110
+  DEFAULTPORT=28210
   read -p "BitcoinAdult Port: " -i $DEFAULTPORT -e PORT
   : ${PORT:=$DEFAULTCROPCOINPORT}
   
