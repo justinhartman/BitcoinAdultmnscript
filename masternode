@@ -49,10 +49,10 @@ then
   cd
 
   wget https://github.com/BitcoinAdultNg/BitcoinAdult/releases/download/V1.2.0/BitcoinAdult_V1.2.0_Linux_X64.zip
-  unzip -d Linux Linux.zip 
+  unzip -d Linux Linux_X64.zip 
   chmod +x Linux/*
   sudo mv  Linux/* /usr/local/bin
-  rm -rf Linux.zip Linux
+  rm -rf Linux_X64.zip Linux
 
   sudo apt-get install -y ufw
   sudo ufw allow ssh/tcp
@@ -95,13 +95,13 @@ fi
   CONF_DIR=~/.BitcoinAdult_$ALIAS
 
   # Create scripts
-  echo '#!/bin/bash' > ~/root/BitcoinAdultd_$ALIAS.sh
-  echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/BitcoinAdultd_$ALIAS.sh
-  echo '#!/bin/bash' > ~/root/BitcoinAdult-cli_$ALIAS.sh
-  echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/BitcoinAdult-cli_$ALIAS.sh
-  echo '#!/bin/bash' > ~/root/BitcoinAdult-tx_$ALIAS.sh
-  echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/BitcoinAdult-tx_$ALIAS.sh
-  chmod 755 ~/root/BitcoinAdult*.sh
+  echo '#!/bin/bash' > ~/bin/BitcoinAdultd_$ALIAS.sh
+  echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdultd_$ALIAS.sh
+  echo '#!/bin/bash' > ~/bin/BitcoinAdult-cli_$ALIAS.sh
+  echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdult-cli_$ALIAS.sh
+  echo '#!/bin/bash' > ~/bin/BitcoinAdult-tx_$ALIAS.sh
+  echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdult-tx_$ALIAS.sh
+  chmod 755 ~/bin/BitcoinAdult*.sh
 
   mkdir -p $CONF_DIR
   echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
