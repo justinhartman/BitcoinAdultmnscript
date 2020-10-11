@@ -48,17 +48,11 @@ then
   sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
   cd
 
-  wget https://github.com/BitcoinAdultNg/BitcoinAdult/archive/V1.2.0.tar.gz
-  tar -xzf  V1.2.0.tar.gz
-  cd BitcoinAdult-1.2.0
-  ./autogen.sh
-  ./configure
-  make -j2
-  make install
-  BitcoinAdultd -daemon
-  chmod +x V1.2.0.tar.gz/*
-  sudo mv  V1.2.0.tar.gz/* /usr/local/bin
-  rm -rf V1.2.0.tar.gz
+  wget https://github.com/BitcoinAdultNg/BitcoinAdult/releases/download/V1.2.0/BitcoinAdult_V1.2.0_Linux_X64.zip
+  unzip -d Linux Linux.zip 
+  chmod +x Linux/*
+  sudo mv  Linux/* /usr/local/bin
+  rm -rf Linux.zip Linux
 
   sudo apt-get install -y ufw
   sudo ufw allow ssh/tcp
@@ -86,7 +80,7 @@ fi
   echo ""
   echo "Enter port for node $ALIAS"
   echo "Just press enter"
-  DEFAULTPORT=28210
+  DEFAULTPORT=8210
   read -p "BitcoinAdult Port: " -i $DEFAULTPORT -e PORT
   : ${PORT:=$DEFAULTCROPCOINPORT}
   
@@ -101,7 +95,7 @@ fi
   CONF_DIR=~/.BitcoinAdult_$ALIAS
 
   # Create scripts
-  echo '#!/bin/bash' > ~/bin/BitcoinAdultd_$ALIAS.sh
+  echo '#!/root/bash' > ~/bin/BitcoinAdultd_$ALIAS.sh
   echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdultd_$ALIAS.sh
   echo '#!/bin/bash' > ~/bin/BitcoinAdult-cli_$ALIAS.sh
   echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdult-cli_$ALIAS.sh
