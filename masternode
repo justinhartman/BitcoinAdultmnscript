@@ -101,7 +101,7 @@ fi
   echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdult-cli_$ALIAS.sh
   echo '#!/bin/bash' > ~/bin/BitcoinAdult-tx_$ALIAS.sh
   echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/bin/BitcoinAdult-tx_$ALIAS.sh
-  chmod 755 ~/bin/BitcoinAdult*.sh
+  chmod +x ~/bin/BitcoinAdult*.sh
 
   mkdir -p $CONF_DIR
   echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
