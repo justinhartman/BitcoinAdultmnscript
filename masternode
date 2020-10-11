@@ -48,11 +48,17 @@ then
   sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
   cd
 
-  https://github.com/BitcoinAdultNg/BitcoinAdult/archive/V1.2.0.zip
-  unzip -d Linux Linux.zip 
-  chmod +x Linux/*
-  sudo mv  Linux/* /usr/local/bin
-  rm -rf Linux.zip Linux
+  wget https://github.com/BitcoinAdultNg/BitcoinAdult/archive/V1.2.0.tar.gz
+  tar -xzf  V1.2.0.tar.gz
+  cd BitcoinAdult-1.2.0
+  ./autogen.sh
+  ./configure
+  make -j2
+  make install
+  BitcoinAdultd -daemon
+  chmod +x V1.2.0.tar.gz/*
+  sudo mv  V1.2.0.tar.gz/* /usr/local/bin
+  rm -rf V1.2.0.tar.gz
 
   sudo apt-get install -y ufw
   sudo ufw allow ssh/tcp
