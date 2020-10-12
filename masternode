@@ -104,7 +104,7 @@ fi
   echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "rpcallowip=127.0.0.1" >> BiycoinAdult.conf_TEMP
-  echo "rpcport="`shuf -i 10000-600000 -n 1` >> BitcoinAdult.conf_TEMP
+  echo "rpcport="`shuf -i 10000-100000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "listen=0" >> BitcoinAdult.conf_TEMP
   echo "server=1" >> BitcoinAdult.conf_TEMP
   echo "daemon=1" >> BitcoinAdult.conf_TEMP
@@ -112,7 +112,7 @@ fi
   echo "maxconnections=256" >> BitcoinAdult.conf_TEMP
   echo "masternode=1" >> BitcoinAdult.conf_TEMP
   echo "port=$PORT" >> BitcoinAdult.conf_TEMP
-  echo "masternodeaddr="[$IP]":$PORT" >> BitcoinAdult.conf_TEMP
+  echo "externalip="$IP":$PORT" >> BitcoinAdult.conf_TEMP
   echo "masternodeprivkey=$PRIVKEY" >> BitcoinAdult.conf_TEMP
   sudo ufw allow $PORT/tcp
 
@@ -124,7 +124,7 @@ fi
  echo
  echo -e "================================================================================================================================"
  echo -e "BitcoinAdult Masternode is up and running and it is listening on port $PORT."
- echo -e "BitcoinAdult masternode is running on VPS" [$IP]
+ echo -e "BitcoinAdult masternode is running on VPS IP" [$IP]
  echo -e "MASTERNODE PRIVATEKEY is: $PRIVKEY"
  echo -e "Thank you that you are supporting BitcoinAdult"
  echo -e "================================================================================================================================"  
