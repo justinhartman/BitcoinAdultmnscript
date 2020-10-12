@@ -96,13 +96,13 @@ fi
   CONF_DIR=~/.BitcoinAdult_$ALIAS
 
   # Create scripts
-  echo '#!/bin/bash' > ~/root/.BitcoinAdultd_$ALIAS
-  echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/.BitcoinAdultd_$ALIAS
-  echo '#!/bin/bash' > ~/root/.BitcoinAdult-cli_$ALIAS
-  echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/.BitcoinAdult-cli_$ALIAS
-  echo '#!/bin/bash' > ~/root/.BitcoinAdult-tx_$ALIAS
-  echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/root/.BitcoinAdult-tx_$ALIAS
-  chmod 755 ~/root/BitcoinAdult*
+  echo '#!/bin/bash' > ~/.BitcoinAdultd_$ALIAS
+  echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/.BitcoinAdultd_$ALIAS
+  echo '#!/bin/bash' > ~/.BitcoinAdult-cli_$ALIAS
+  echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/.BitcoinAdult-cli_$ALIAS
+  echo '#!/bin/bash' > ~/.BitcoinAdult-tx_$ALIAS
+  echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/.BitcoinAdult-tx_$ALIAS
+  chmod 755 ~/.BitcoinAdult*
 
   mkdir -p $CONF_DIR
   echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
