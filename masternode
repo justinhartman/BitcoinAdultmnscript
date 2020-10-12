@@ -29,10 +29,11 @@ then
   sudo apt-get install -y zip unzip
   sudo apt-get install software-properties-common
   sudo add-apt-repository ppa:bitcoin/bitcoin
+  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  sudo apt-get update
+  sudo apt-get install gcc-4.9 g++-4.9
   sudo apt-get install gcc-6 g++-6 -y
   sudo apt-get update
-  sudo apt-get install libdb4.8-dev libdb4.8++-dev
-  sudo apt install libqt5svg5-dev
 
   cd /var
   sudo touch swap.img
@@ -103,7 +104,7 @@ fi
   echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "rpcallowip=127.0.0.1" >> BiycoinAdult.conf_TEMP
-  echo "rpcport=$RPCPORT" >> BitcoinAdult.conf_TEMP
+  echo "rpcport="`shuf -i 10000-600000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "listen=0" >> BitcoinAdult.conf_TEMP
   echo "server=1" >> BitcoinAdult.conf_TEMP
   echo "daemon=1" >> BitcoinAdult.conf_TEMP
@@ -123,7 +124,8 @@ fi
  echo
  echo -e "================================================================================================================================"
  echo -e "BitcoinAdult Masternode is up and running and it is listening on port $PORT."
- echo -e "Please make sure the you use the [] when using IPv6 in the masternode config of local wallet" [$IP]:$PORT
+ echo -e "BitcoinAdult masternode is running on VPS" [$IP]
  echo -e "MASTERNODE PRIVATEKEY is: $PRIVKEY"
+ echo -e "Thank you that you are supporting BitcoinAdult"
  echo -e "================================================================================================================================"  
     
