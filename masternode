@@ -6,8 +6,6 @@ echo "* Ubuntu Server is the recommended operating system for this install.     
 echo "*                                                                          *"
 echo "* This script will install and configure your BitcoinAdult masternodes.    *"
 echo "*                                                                          *"
-echo "*                                                                          *"
-echo "*                                                                          *"
 echo "****************************************************************************"
 echo && echo && echo
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -17,7 +15,7 @@ echo "!                                                 !"
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo && echo && echo
 
-echo "Do you want to install all needed dependencies (no if you did it before)? [y/n]"
+echo "Do you want to install all needed dependencies (NO IF YOU DID IT BEFORE)? [y/n]"
 read DOSETUP
 
 if [ $DOSETUP = "y" ]
