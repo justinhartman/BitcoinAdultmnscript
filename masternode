@@ -2,8 +2,8 @@
 
 cd ~
 echo "****************************************************************************"
-echo "* Ubuntu Server is the recommended operating system for this install.       *"
-echo "*                                                                          *"
+echo "*          Welcome to BitcoinAdult multi masternode setup guide.           *"
+echo "* Ubuntu Server is the recommended operating system for this install.      *"
 echo "* This script will install and configure your BitcoinAdult masternodes.    *"
 echo "*                                                                          *"
 echo "****************************************************************************"
@@ -125,9 +125,9 @@ fi
   
  echo
  echo -e "================================================================================================================================"
- echo -e "BitcoinAdult Masternode is up and running."
+ echo -e "BitcoinAdult Masternode is up and running only you need start it on Windows wallet ."
  echo -e "BitcoinAdult masternode is running on VPS IP:PORT" [$IP:$PORT]
  echo -e "MASTERNODE PRIVATEKEY is: $PRIVKEY"
- echo -e "Thank you that you are supporting BitcoinAdult"
+ echo -e "NOTE:It can take several minutes before vps find all blocks."
  echo -e "================================================================================================================================"  
     
