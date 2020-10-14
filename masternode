@@ -125,7 +125,7 @@ fi
   
  echo
  echo -e "================================================================================================================================"
- echo -e "BitcoinAdult Masternode is up and running only you need start it on Windows wallet ."
+ echo -e "BitcoinAdult Masternode is up and running only you need start it on Windows wallet."
  echo -e "BitcoinAdult masternode is running on VPS IP:PORT" [$IP:$PORT]
  echo -e "MASTERNODE PRIVATEKEY is: $PRIVKEY"
  echo -e "NOTE:It can take several minutes before vps find all blocks."
