@@ -44,10 +44,10 @@ then
   cd
 
   wget https://github.com/BitcoinAdultNg/BitcoinAdult/releases/download/V1.2.1/BitcoinAdult_V1.2.1_Linux_X64.zip
-  unzip -d Linux BitcoinAdult_V1.2.0_Linux_X64.zip 
+  unzip -d Linux BitcoinAdult_V1.2.1_Linux_X64.zip 
   chmod +x Linux/*
   sudo mv  Linux/* /usr/local/bin
-  rm -rf Linux BitcoinAdult_V1.2.0_Linux_X64.zip Linux
+  rm -rf Linux BitcoinAdult_V1.2.1_Linux_X64.zip Linux
 
   sudo apt-get install -y ufw
   sudo ufw allow ssh/tcp
