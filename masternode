@@ -63,7 +63,8 @@ fi
 
  ## Setup conf
  IP=$(curl -k https://ident.me)
- mkdir -p ~/bin
+ BIN_DIR=/root/bin
+ mkdir -p $BIN_DIR
  echo ""
  echo "Configure your masternodes now!"
  echo "Detecting IP address:$IP"
@@ -90,18 +91,19 @@ fi
   CONF_DIR=~/.BitcoinAdult_$ALIAS
 
   # Create scripts
-  echo '#!/bin/bash' > ~/.BitcoinAdultd_$ALIAS
-  echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/.BitcoinAdultd_$ALIAS
-  echo '#!/bin/bash' > ~/.BitcoinAdult-cli_$ALIAS
-  echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/.BitcoinAdult-cli_$ALIAS
-  echo '#!/bin/bash' > ~/.BitcoinAdult-tx_$ALIAS
-  echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> ~/.BitcoinAdult-tx_$ALIAS
-  chmod 755 ~/.BitcoinAdult*
-
+  echo '#!/bin/bash' > $BIN_DIR/BitcoinAdultd_$ALIAS
+  echo "BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> $BIN_DIR/BitcoinAdultd_$ALIAS
+  echo '#!/bin/bash' > $BIN_DIR/BitcoinAdult-cli_$ALIAS
+  echo "BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> $BIN_DIR/BitcoinAdult-cli_$ALIAS
+  echo '#!/bin/bash' > $BIN_DIR/BitcoinAdult-tx_$ALIAS
+  echo "BitcoinAdult-tx -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR "'$*' >> $BIN_DIR/BitcoinAdult-tx_$ALIAS
+  chmod 755 $BIN_DIR/BitcoinAdult*
+  
+  # Create the configuration file
   mkdir -p $CONF_DIR
   echo "rpcuser=BitcoinAdult"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "rpcpassword=BTAD"`shuf -i 100000-10000000 -n 1` >> BitcoinAdult.conf_TEMP
-  echo "rpcallowip=127.0.0.1" >> BiycoinAdult.conf_TEMP
+  echo "rpcallowip=127.0.0.1" >> BitcoinAdult.conf_TEMP
   echo "rpcport="`shuf -i 10000-100000 -n 1` >> BitcoinAdult.conf_TEMP
   echo "listen=0" >> BitcoinAdult.conf_TEMP
   echo "server=1" >> BitcoinAdult.conf_TEMP
@@ -116,13 +118,52 @@ fi
   echo "addnode=207.180.223.246" >> BitcoinAdult.conf_TEMP
   echo "addnode=80.211.87.11" >> BitcoinAdult.conf_TEMP
   echo "addnode=167.86.125.181" >> BitcoinAdult.conf_TEMP
+  echo "addnode=51.15.68.149" >> BitcoinAdult.conf_TEMP
+  echo "addnode=163.172.165.250" >> BitcoinAdult.conf_TEMP
+  echo "addnode=167.86.110.168" >> BitcoinAdult.conf_TEMP
+  echo "addnode=211.26.201.9" >> BitcoinAdult.conf_TEMP
+  echo "addnode=80.211.86.175" >> BitcoinAdult.conf_TEMP
+  echo "addnode=149.28.92.159" >> BitcoinAdult.conf_TEMP
+  echo "addnode=51.158.66.217" >> BitcoinAdult.conf_TEMP
+  echo "addnode=212.47.246.133" >> BitcoinAdult.conf_TEMP
+  echo "addnode=47.190.133.211" >> BitcoinAdult.conf_TEMP
   sudo ufw allow $PORT/tcp
 
   mv BitcoinAdult.conf_TEMP $CONF_DIR/BitcoinAdult.conf
 
-  sh ~/.BitcoinAdultd_$ALIAS
-  
-  
+  # Create systemd script
+  cat << EOF > /etc/systemd/system/BitcoinAdult_$ALIAS.service
+[Unit]
+Description=BitcoinAdult_$ALIAS service
+After=network.target
+
+[Service]
+User=root
+Group=root
+
+Type=forking
+#PIDFile=$CONF_DIR/BitcoinAdult_$ALIAS.pid
+
+ExecStart=/usr/local/bin/BitcoinAdultd -daemon -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR
+ExecStop=-/usr/local/bin/BitcoinAdult-cli -conf=$CONF_DIR/BitcoinAdult.conf -datadir=$CONF_DIR stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=10s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+  # Start and enable the service
+  systemctl daemon-reload
+  sleep 3
+  systemctl start BitcoinAdult_$ALIAS.service
+  systemctl enable BitcoinAdult_$ALIAS.service
+
  echo
  echo -e "================================================================================================================================"
  echo -e "BitcoinAdult Masternode is up and running only you need start it on Windows wallet."
